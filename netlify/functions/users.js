@@ -1,8 +1,8 @@
 const users = [
-  { id: 1, name: 'Ali Khan', email: 'ali@example.com', age: 22 },
-  { id: 2, name: 'Sara Ahmed', email: 'sara@example.com', age: 25 },
-  { id: 3, name: 'Ahmed Raza', email: 'ahmed@example.com', age: 28 },
-  { id: 4, name: 'Fatima Noor', email: 'fatima@example.com', age: 21 }
+  { id: 1, name: 'Mahnoor', email: 'mahnoor@example.com', age: 22 },
+  { id: 2, name: 'Tooba', email: 'tooba@example.com', age: 21 },
+  { id: 3, name: 'Hamna', email: 'hamna@example.com', age: 23 },
+  { id: 4, name: 'Eman', email: 'eman@example.com', age: 22 }
 ];
 
 exports.handler = async (event) => {
