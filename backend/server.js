@@ -1,118 +1,63 @@
 const express = require("express");
 const cors = require("cors");
 
-const pool = require("./db");
-
 const app = express();
 
-const PORT = process.env.PORT || 5000;
-
-// Middleware
 app.use(cors());
 app.use(express.json());
 
+const users = [
+    {
+        id: 1,
+        name: "Ali Khan",
+        email: "ali@example.com",
+        age: 22
+    },
+    {
+        id: 2,
+        name: "Sara Ahmed",
+        email: "sara@example.com",
+        age: 25
+    },
+    {
+        id: 3,
+        name: "Ahmed Raza",
+        email: "ahmed@example.com",
+        age: 28
+    },
+    {
+        id: 4,
+        name: "Fatima Noor",
+        email: "fatima@example.com",
+        age: 21
+    }
+];
 
-// Home route
 app.get("/", (req, res) => {
     res.json({
         message: "Backend is working!"
     });
 });
 
-
-// Get all users
-app.get("/api/users", async (req, res) => {
-
-    try {
-
-        const [users] = await pool.query(
-            "SELECT id, name, email, age, created_at FROM users"
-        );
-
-        res.json(users);
-
-    } catch (error) {
-
-        console.error(error);
-
-        res.status(500).json({
-            message: "Failed to get users"
-        });
-
-    }
+app.get("/api/users", (req, res) => {
+    res.json(users);
 });
 
+app.get("/api/users/:id", (req, res) => {
 
-// Get one user
-app.get("/api/users/:id", async (req, res) => {
+    const id = Number(req.params.id);
 
-    try {
+    const user = users.find(user => user.id === id);
 
-        const { id } = req.params;
-
-        const [users] = await pool.query(
-            "SELECT id, name, email, age, created_at FROM users WHERE id = ?",
-            [id]
-        );
-
-        if (users.length === 0) {
-            return res.status(404).json({
-                message: "User not found"
-            });
-        }
-
-        res.json(users[0]);
-
-    } catch (error) {
-
-        console.error(error);
-
-        res.status(500).json({
-            message: "Failed to get user"
+    if (!user) {
+        return res.status(404).json({
+            message: "User not found"
         });
-
     }
+
+    res.json(user);
 });
 
-
-// Add a new user
-app.post("/api/users", async (req, res) => {
-
-    try {
-
-        const { name, email, age } = req.body;
-
-        if (!name || !email || !age) {
-            return res.status(400).json({
-                message: "Name, email and age are required"
-            });
-        }
-
-        const [result] = await pool.query(
-            "INSERT INTO users (name, email, age) VALUES (?, ?, ?)",
-            [name, email, age]
-        );
-
-        res.status(201).json({
-            message: "User created successfully",
-            userId: result.insertId
-        });
-
-    } catch (error) {
-
-        console.error(error);
-
-        res.status(500).json({
-            message: "Failed to create user"
-        });
-
-    }
-});
-
-
-// Start server
-app.listen(PORT, () => {
-
-    console.log(`Backend running at http://localhost:${PORT}`);
-
+app.listen(5000, () => {
+    console.log("Backend running on port 5000");
 });
