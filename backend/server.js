@@ -9,8 +9,8 @@ app.use(express.json());
 const users = [
     {
         id: 1,
-        name: "Ali Khan",
-        email: "ali@example.com",
+        name: "MAHNOOR",
+        email: "mahnoor@example.com",
         age: 22
     },
     {
@@ -21,14 +21,14 @@ const users = [
     },
     {
         id: 3,
-        name: "Ahmed Raza",
-        email: "ahmed@example.com",
+        name: "tooba",
+        email: "tooba@example.com",
         age: 28
     },
     {
         id: 4,
-        name: "Fatima Noor",
-        email: "fatima@example.com",
+        name: "eman",
+        email: "eman@example.com",
         age: 21
     }
 ];
