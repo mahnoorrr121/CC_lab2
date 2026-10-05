@@ -12,10 +12,10 @@ CREATE TABLE users (
 
 INSERT INTO users (name, email, age)
 VALUES
-('Ali Khan', 'ali@example.com', 22),
-('Sara Ahmed', 'sara@example.com', 25),
-('Ahmed Raza', 'ahmed@example.com', 28),
-('mahNoor', 'mahnoor@example.com', 21);
+('mahnoor', 'mahnoor@example.com', 22),
+('eman', 'eman@example.com', 25),
+('tooba', 'tooba@example.com', 28),
+('hamna', 'hamna@example.com', 21);
 
 SELECT * FROM users;
 
